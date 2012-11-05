@@ -12,3 +12,4 @@ type ViewModelBase() =
         member x.PropertyChanged = propertyChangedEvent.Publish
     member x.OnPropertyChanged propertyName = 
         propertyChangedEvent.Trigger([| x; new PropertyChangedEventArgs(propertyName) |])
+    member x.Listen = propertyChangedEvent.Publish.AddHandler

@@ -1,11 +1,29 @@
-﻿<Window
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:ViewModel="clr-namespace:TOSCheckerTrayApp.ViewModel;assembly=tos-dr"
-    Title="" ShowInTaskbar="False" ResizeMode="NoResize" Visibility="Hidden" Topmost="True" WindowStyle="None"
-    WindowStartupLocation="CenterScreen" Width="400" SizeToContent="Height">
+﻿<Window x:Class="TOSCheckerTrayApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:it="clr-namespace:TOSCheckerTrayApp"
+        xmlns:vm="clr-namespace:TOSCheckerTrayApp.ViewModel;assembly=TOSCheckerTrayAppModel"
+        Title="" ShowInTaskbar="False" ResizeMode="NoResize" Visibility="{Binding Visible, Mode=TwoWay}"
+        Background="White" BorderBrush="#FFA0A0A0" BorderThickness="1"
+        Topmost="True" WindowStyle="None" WindowStartupLocation="CenterScreen" 
+        Width="479" Height="520" SizeToContent="Height" Deactivated="HideWindow" 
+        SizeChanged="Recenter" LocationChanged="Recenter" DataContextChanged="Window_DataContextChanged_1">
     <Window.DataContext>
-        <ViewModel:MainWindowViewModel/>
+        <vm:MainWindowViewModel/>
     </Window.DataContext>
-    <Frame x:Name="MainView" Source="TOSMainView.xaml"/>
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
+    <StackPanel>
+        <StackPanel Visibility="{Binding HasNoService, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Border x:Name="TOSBorder" BorderBrush="#FFDDE0E2" BorderThickness="0,0,0,1" VerticalAlignment="Top" Height="55">
+                <Image Source="{StaticResource Banner}" Margin="20,10" Stretch="None" HorizontalAlignment="Left"/>
+            </Border>
+            <TextBlock TextWrapping="Wrap" Margin="20,5">
+                Load websites in Internet Explorer to have their Terms of Service classifications displayed here.
+            </TextBlock>
+        </StackPanel>
+        <WebBrowser Height="520" Visibility="{Binding HasService, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    it:WebBrowserUtility.BindableSource="{Binding ServiceUri}" Margin="5"/>
+    </StackPanel>
 </Window>
