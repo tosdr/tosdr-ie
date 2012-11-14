@@ -1,9 +1,0 @@
-﻿<UserControl 
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:ViewModel="clr-namespace:TOSCheckerTrayApp.ViewModel;assembly=tos-dr">
-    <UserControl.Resources>
-        <ResourceDictionary Source="ApplicationResources.xaml" />
-    </UserControl.Resources>
-    
-</UserControl>

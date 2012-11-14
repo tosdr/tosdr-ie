@@ -1,8 +1,0 @@
-﻿<Page 
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" HorizontalAlignment="Left" VerticalAlignment="Center"
-    Width="400">
-    <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center">
-        Load websites in Internet Explorer to have their Terms of Service classifications displayed here.
-    </TextBlock>
-</Page>
